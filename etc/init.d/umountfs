@@ -16,6 +16,11 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 umask 022
 
+# Special function added by KS to stop a mdadm raid
+stop_raid () {
+  /usr/sbin/unmount-raid.sh
+}
+
 do_stop () {
 	PROTECTED_MOUNTS="$(sed -n ':a;/^[^ ]* \/ /!{H;n;ba};{H;s/.*//;x;s/\n//;p}' /proc/mounts)"
 	WEAK_MTPTS="" # be gentle, don't use force
@@ -108,6 +113,8 @@ do_stop () {
 			log_end_msg $?
 		fi
 	fi
+
+        stop_raid
 }
 
 case "$1" in
