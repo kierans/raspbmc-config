@@ -1,0 +1,2 @@
+- Added mount-raid.sh to /etc/rc.local
+- Added unmount-raid.sh to the end of /etc/init.d/umountfs
