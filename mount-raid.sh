@@ -63,9 +63,15 @@ function assemble()  {
  
     if [ $result -ne 0 ] ; then
       error "Status code is not 0 ($result); check /proc/mdstat"
+    else
+      mdadm -G $RAID -b none
+      mdadm -G $RAID -b internal
     fi
   else
     info "RAID already assembled"
+    
+    mdadm -G $RAID -b none
+    mdadm -G $RAID -b internal
   fi
 }
 
