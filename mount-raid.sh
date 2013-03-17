@@ -40,7 +40,7 @@ function checkDrives()  {
     letter=${driveLetters[$i]}
     count=`ls /dev | grep -c "sd${letter}1"`
 
-    if [ $count -ne 1 ] ; then
+    if [ $count -lt 1 ] ; then
       error "/dev/sd${letter} appears to be missing"
       die "Needed drive is missing"
     fi
